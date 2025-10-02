@@ -1,11 +1,3 @@
-/*
-Tabla calificaciones
-calificacion_id int8 PRIMARY KEY
-usuario_id int8 REFERENCES usuarios(usuarios_id)
-publicacion_id int8 REFERENCES publicacion(publicacion_id)
-calificacion int8
-*/
-
 import { param, body, validationResult } from "express-validator";
 
 export const runValidations = (validations) => {
