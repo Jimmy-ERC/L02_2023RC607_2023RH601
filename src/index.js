@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import rolesRoutes from "./routes/roles.routes.js";
+import usuariosRoutes from "./routes/usuarios.routes.js";
+//import publicacionesRoutes from "./routes/publicaciones.routes.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 
 dotenv.config();
@@ -15,6 +17,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/roles", rolesRoutes);
+app.use("/api/usuarios", usuariosRoutes);
+//app.use("/api/publicaciones", publicacionesRoutes);
+
 app.use(errorHandler);
 
 app.listen(PORT, () => {
