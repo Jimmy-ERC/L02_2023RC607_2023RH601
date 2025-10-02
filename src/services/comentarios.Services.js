@@ -6,6 +6,33 @@ export const getAllComentarios = async (req, res) => {
   return result.rows;
 };
 
+export const getComentarioById = async (id_comentario) => {
+  const result = await pool.query(
+    "SELECT * FROM comentarios WHERE comentario_id = $1",
+    [id_comentario]
+  );
+
+  return result.rows[0];
+};
+
+export const getComentariosByPublicacionId = async (publicacion_id) => {
+  const result = await pool.query(
+    "SELECT * FROM comentarios WHERE publicacion_id = $1 ORDER BY comentario_id",
+    [publicacion_id]
+  );
+
+  return result.rows;
+};
+
+export const getComentariosByUsuarioId = async (usuario_id) => {
+  const result = await pool.query(
+    "SELECT * FROM comentarios WHERE usuario_id = $1 ORDER BY comentario_id",
+    [usuario_id]
+  );
+
+  return result.rows;
+};
+
 export const postCrearComentario = async (
   publicacion_id,
   comentario,

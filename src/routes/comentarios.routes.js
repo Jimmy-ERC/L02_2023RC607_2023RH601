@@ -3,6 +3,8 @@ import * as comentariosController from "../controllers/comentariosController.js"
 import {
   runValidations,
   validarIDComentario,
+  validarIDPublicacion,
+  validarIDUsuario,
   insertarComentarioValidator,
 } from "../middlewares/validator.js";
 
@@ -12,6 +14,21 @@ router.get(
   "/",
   validarIDComentario,
   comentariosController.getObtenerTodosLosComentarios
+);
+router.get(
+  "/:id_comentario",
+  validarIDComentario,
+  comentariosController.getComentarioById
+);
+router.get(
+  "/publicacion/:publicacion_id",
+  runValidations(validarIDPublicacion),
+  comentariosController.getComentariosByPublicacionId
+);
+router.get(
+  "/usuario/:usuario_id",
+  runValidations(validarIDUsuario),
+  comentariosController.getComentariosByUsuarioId
 );
 router.post(
   "/",
