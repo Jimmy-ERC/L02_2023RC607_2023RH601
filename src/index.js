@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import rolesRoutes from "./routes/roles.routes.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 
 dotenv.config();
@@ -13,6 +14,7 @@ app.get("/", (req, res) => {
   res.send("¡Hola mundo!");
 });
 
+app.use("/api/roles", rolesRoutes);
 app.use(errorHandler);
 
 app.listen(PORT, () => {
