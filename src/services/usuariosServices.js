@@ -6,6 +6,15 @@ export const getAllUsuarios = async (req, res) => {
   return result.rows;
 };
 
+export const getUsuarioById = async (id_usuario) => {
+  const result = await pool.query(
+    "SELECT * FROM usuarios WHERE usuarios_id = $1",
+    [id_usuario]
+  );
+
+  return result.rows[0];
+};
+
 export const postCrearUsuario = async (
   rol_id,
   nombre_usuario,

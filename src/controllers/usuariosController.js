@@ -10,6 +10,23 @@ export const getObtenerTodosLosUsuarios = async (req, res, next) => {
   }
 };
 
+export const getUsuarioById = async (req, res, next) => {
+  try {
+    const { usuarios_id } = req.params;
+
+    const result = await usuariosServices.getUsuarioById(usuarios_id);
+
+    if (!result) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    res.json(result);
+  } catch (err) {
+    return next(err);
+  }
+};
+
+
 export const postCrearUsuario = async (req, res, next) => {
   try {
     const { rol_id, nombre_usuario, clave, nombre, apellido } = req.body;

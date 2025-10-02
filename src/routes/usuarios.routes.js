@@ -13,6 +13,8 @@ router.get(
   validarIDUsuario,
   usuariosController.getObtenerTodosLosUsuarios
 );
+router.get("/:usuarios_id", validarIDUsuario, usuariosController.getUsuarioById);
+
 router.post(
   "/",
   runValidations(insertarUsuarioValidator),
