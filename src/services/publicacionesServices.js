@@ -1,12 +1,3 @@
-/*
-Tabla publicacion
-
-publicacion_id int8 PRIMARY KEY
-usuario_id int8 REFERENCES usuarios(usuario_id)
-titulo Text
-descripcion Text
-*/
-
 import { pool } from "../db.js";
 
 export const getPublicaciones = async () => {

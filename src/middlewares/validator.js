@@ -1,3 +1,11 @@
+/*
+Tabla calificaciones
+calificacion_id int8 PRIMARY KEY
+usuario_id int8 REFERENCES usuarios(usuarios_id)
+publicacion_id int8 REFERENCES publicacion(publicacion_id)
+calificacion int8
+*/
+
 import { param, body, validationResult } from "express-validator";
 
 export const runValidations = (validations) => {
@@ -171,4 +179,54 @@ export const validarNumeroTop = [
     .withMessage("El número debe ser un entero positivo")
     .notEmpty()
     .withMessage("El número no debe estar vacío"),
+];
+
+//Validaciones para calificaciones
+export const validarIDCalificacion = [
+  param("calificacion_id")
+    .isInt({ min: 1 })
+    .withMessage("El ID de la calificación debe ser un número entero positivo")
+    .notEmpty()
+    .withMessage("El ID de la calificación no debe estar vacío"),
+];
+
+export const insertarCalificacion = [
+  body("usuario_id")
+    .isInt({ min: 1 })
+    .withMessage("El ID del usuario debe ser un número entero positivo")
+    .notEmpty()
+    .withMessage("El ID del usuario no debe estar vacío"),
+  body("publicacion_id")
+    .isInt({ min: 1 })
+    .withMessage("El ID de la publicación debe ser un número entero positivo")
+    .notEmpty()
+    .withMessage("El ID de la publicación no debe estar vacío"),
+  body("calificacion")
+    .isInt({ min: 1, max: 5 })
+    .withMessage("La calificación debe ser un número entero entre 1 y 5")
+    .notEmpty()
+    .withMessage("La calificación no debe estar vacía"),
+];
+
+export const actualizarCalificacion = [
+  param("calificacion_id")
+    .isInt({ min: 1 })
+    .withMessage("El ID de la calificación debe ser un número entero positivo")
+    .notEmpty()
+    .withMessage("El ID de la calificación no debe estar vacío"),
+  body("usuario_id")
+    .isInt({ min: 1 })
+    .withMessage("El ID del usuario debe ser un número entero positivo")
+    .notEmpty()
+    .withMessage("El ID del usuario no debe estar vacío"),
+  body("publicacion_id")
+    .isInt({ min: 1 })
+    .withMessage("El ID de la publicación debe ser un número entero positivo")
+    .notEmpty()
+    .withMessage("El ID de la publicación no debe estar vacío"),
+  body("calificacion")
+    .isInt({ min: 1, max: 5 })
+    .withMessage("La calificación debe ser un número entero entre 1 y 5")
+    .notEmpty()
+    .withMessage("La calificación no debe estar vacía"),
 ];
