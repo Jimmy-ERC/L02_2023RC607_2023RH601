@@ -115,6 +115,57 @@ export const actualizarUsuarioValidator = [
     .withMessage("El apellido no debe estar vacío"),
 ];
 
+//Validaciones para comentarios
+export const validarIDComentario = [
+  param("id_comentario")
+    .isInt({ min: 1 })
+    .withMessage("El ID del comentario debe ser un número entero positivo")
+    .notEmpty()
+    .withMessage("El ID del comentario no debe estar vacío"),
+];
+
+export const insertarComentarioValidator = [
+  body("publicacion_id")
+    .isInt({ min: 1 })
+    .withMessage("El ID de la publicación debe ser un número entero positivo")
+    .notEmpty()
+    .withMessage("El ID de la publicación no debe estar vacío"),
+  body("comentario")
+    .isString()
+    .withMessage("El comentario debe ser una cadena de texto")
+    .notEmpty()
+    .withMessage("El comentario no debe estar vacío"),
+  body("usuario_id")
+    .isInt({ min: 1 })
+    .withMessage("El ID del usuario debe ser un número entero positivo")
+    .notEmpty()
+    .withMessage("El ID del usuario no debe estar vacío"),
+];
+export const actualizarComentarioValidator = [
+  param("id_comentario")
+    .isInt({ min: 1 })
+    .withMessage("El ID del comentario debe ser un número entero positivo")
+    .notEmpty()
+    .withMessage("El ID del comentario no debe estar vacío"),
+  body("publicacion_id")
+    .isInt({ min: 1 })
+    .withMessage("El ID de la publicación debe ser un número entero positivo")
+    .notEmpty()
+    .withMessage("El ID de la publicación no debe estar vacío"),
+  body("comentario")
+    .isString()
+    .withMessage("El comentario debe ser una cadena de texto")
+    .notEmpty()
+    .withMessage("El comentario no debe estar vacío"),
+  body("usuario_id")
+    .isInt({ min: 1 })
+    .withMessage("El ID del usuario debe ser un número entero positivo")
+    .notEmpty()
+    .withMessage("El ID del usuario no debe estar vacío"),
+];
+
+
+
 //Validaciones para publicaciones
 export const validarIDPublicacion = [
   param("publicacion_id")
