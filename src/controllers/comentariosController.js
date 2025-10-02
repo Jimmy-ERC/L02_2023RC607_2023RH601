@@ -78,7 +78,7 @@ export const postCrearComentario = async (req, res, next) => {
       usuario_id
     );
 
-    res.status(201).json(result);
+    res.json(result);
   } catch (err) {
     return next(err);
   }
@@ -91,7 +91,7 @@ export const putActualizarComentario = async (req, res, next) => {
     const { id_comentario } = req.params;
 
     const result = await comentariosServices.putActualizarComentario({
-      id_comentario,
+      id_comentario: parseInt(id_comentario),
       publicacion_id,
       comentario,
       usuario_id,

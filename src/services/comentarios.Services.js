@@ -50,6 +50,7 @@ export const postCrearComentario = async (
 };
 
 export const putActualizarComentario = async (comentario) => {
+    console.log(comentario);
   const query = `UPDATE comentarios
                 SET publicacion_id=$1,
                 comentario=$2,
@@ -61,11 +62,11 @@ export const putActualizarComentario = async (comentario) => {
     comentario.publicacion_id,
     comentario.comentario,
     comentario.usuario_id,
-    comentario.comentario_id,
+    comentario.id_comentario,
   ]);
 
   if (result.rowCount === 0)
-    return result.status(404).json({ message: "Comentario no encontrado" });
+    throw new Error("Comentario no encontrado");
 
   return result.rows[0];
 };
