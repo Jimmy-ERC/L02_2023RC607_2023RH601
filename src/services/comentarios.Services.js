@@ -7,6 +7,7 @@ export const getAllComentarios = async (req, res) => {
 };
 
 export const getComentarioById = async (id_comentario) => {
+  console.log(id_comentario);
   const result = await pool.query(
     "SELECT * FROM comentarios WHERE comentario_id = $1",
     [id_comentario]

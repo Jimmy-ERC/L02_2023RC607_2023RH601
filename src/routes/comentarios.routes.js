@@ -26,7 +26,7 @@ router.get(
   comentariosController.getComentariosByPublicacionId
 );
 router.get(
-  "/usuario/:usuario_id",
+  "/usuario/:usuarios_id",
   runValidations(validarIDUsuario),
   comentariosController.getComentariosByUsuarioId
 );

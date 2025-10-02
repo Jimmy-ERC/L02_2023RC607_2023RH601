@@ -14,6 +14,8 @@ export const getComentarioById = async (req, res, next) => {
   try {
     const { id_comentario } = req.params;
 
+    console.log(id_comentario);
+
     const result = await comentariosServices.getComentarioById(id_comentario);
 
     if (!result) {
@@ -35,11 +37,9 @@ export const getComentariosByPublicacionId = async (req, res, next) => {
     );
 
     if (!result || result.length === 0) {
-      return res
-        .status(404)
-        .json({
-          message: "No se encontraron comentarios para esta publicación",
-        });
+      return res.status(404).json({
+        message: "No se encontraron comentarios para esta publicación",
+      });
     }
 
     res.json(result);
@@ -50,10 +50,10 @@ export const getComentariosByPublicacionId = async (req, res, next) => {
 
 export const getComentariosByUsuarioId = async (req, res, next) => {
   try {
-    const { usuario_id } = req.params;
+    const { usuarios_id } = req.params;
 
     const result = await comentariosServices.getComentariosByUsuarioId(
-      usuario_id
+      usuarios_id
     );
 
     if (!result || result.length === 0) {
