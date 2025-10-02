@@ -1,9 +1,3 @@
-/*
-Tabla roles
-rol_id int8 PRIMARY KEY,
-rol TEXT NOT NULL
-*/
-
 import { pool } from "../db.js";
 
 export const getRoles = async () => {

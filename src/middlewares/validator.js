@@ -16,6 +16,7 @@ export const runValidations = (validations) => {
   };
 };
 
+//Validaciones para roles
 export const validarIDRol = [
   param("id_rol")
     .isInt({ min: 1 })
@@ -45,10 +46,15 @@ export const actualizarRol = [
     .withMessage("El nombre del rol no debe estar vacío"),
 ];
 
-
-
-
 //Validaciones para usuarios
+export const validarIDUsuario = [
+  param("usuarios_id")
+    .isInt({ min: 1 })
+    .withMessage("El ID del usuario debe ser un número entero positivo")
+    .notEmpty()
+    .withMessage("El ID del usuario no debe estar vacío"),
+];
+
 export const insertarUsuarioValidator = [
   body("rol_id")
     .isInt({ min: 1 })
@@ -76,7 +82,7 @@ export const insertarUsuarioValidator = [
     .isString()
     .withMessage("El apellido debe ser una cadena de texto")
     .notEmpty()
-    .withMessage("El apellido no debe estar vacío")
+    .withMessage("El apellido no debe estar vacío"),
 ];
 
 export const actualizarUsuarioValidator = [
@@ -106,13 +112,63 @@ export const actualizarUsuarioValidator = [
     .isString()
     .withMessage("El apellido debe ser una cadena de texto")
     .notEmpty()
-    .withMessage("El apellido no debe estar vacío")
-]
+    .withMessage("El apellido no debe estar vacío"),
+];
 
-export const validarIDUsuario = [
-  param("usuarios_id")
+//Validaciones para publicaciones
+export const validarIDPublicacion = [
+  param("publicacion_id")
+    .isInt({ min: 1 })
+    .withMessage("El ID de la publicación debe ser un número entero positivo")
+    .notEmpty()
+    .withMessage("El ID de la publicación no debe estar vacío"),
+];
+
+export const insertarPublicacion = [
+  body("usuario_id")
     .isInt({ min: 1 })
     .withMessage("El ID del usuario debe ser un número entero positivo")
     .notEmpty()
     .withMessage("El ID del usuario no debe estar vacío"),
+  body("titulo")
+    .isString()
+    .withMessage("El título debe ser una cadena de texto")
+    .notEmpty()
+    .withMessage("El título no debe estar vacío"),
+  body("descripcion")
+    .isString()
+    .withMessage("La descripción debe ser una cadena de texto")
+    .notEmpty()
+    .withMessage("La descripción no debe estar vacía"),
+];
+
+export const actualizarPublicacion = [
+  param("publicacion_id")
+    .isInt({ min: 1 })
+    .withMessage("El ID de la publicación debe ser un número entero positivo")
+    .notEmpty()
+    .withMessage("El ID de la publicación no debe estar vacío"),
+  body("usuario_id")
+    .isInt({ min: 1 })
+    .withMessage("El ID del usuario debe ser un número entero positivo")
+    .notEmpty()
+    .withMessage("El ID del usuario no debe estar vacío"),
+  body("titulo")
+    .isString()
+    .withMessage("El título debe ser una cadena de texto")
+    .notEmpty()
+    .withMessage("El título no debe estar vacío"),
+  body("descripcion")
+    .isString()
+    .withMessage("La descripción debe ser una cadena de texto")
+    .notEmpty()
+    .withMessage("La descripción no debe estar vacía"),
+];
+
+export const validarNumeroTop = [
+  param("numero_top")
+    .isInt({ min: 1 })
+    .withMessage("El número debe ser un entero positivo")
+    .notEmpty()
+    .withMessage("El número no debe estar vacío"),
 ];
