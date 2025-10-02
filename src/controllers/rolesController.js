@@ -11,10 +11,10 @@ export const getRoles = async (req, res, next) => {
 };
 
 export const getRolById = async (req, res, next) => {
-  const { id } = req.params;
+  const { id_rol } = req.params;
 
   try {
-    const rol = await roleServices.getRolById(id);
+    const rol = await roleServices.getRolById(id_rol);
 
     if (!rol) {
       return res.status(404).json({ error: "Rol no encontrado" });
@@ -27,7 +27,7 @@ export const getRolById = async (req, res, next) => {
 };
 
 export const insertarRol = async (req, res, next) => {
-  const rol = req.body;
+  const { rol } = req.body;
 
   try {
     const nuevoRol = await roleServices.insertarRol(rol);
@@ -39,11 +39,11 @@ export const insertarRol = async (req, res, next) => {
 };
 
 export const actualizarRol = async (req, res, next) => {
-  const { id } = req.params;
-  const rol = req.body;
+  const { id_rol } = req.params;
+  const { rol } = req.body;
 
   try {
-    const rolActualizado = await roleServices.actualizarRol(id, rol);
+    const rolActualizado = await roleServices.actualizarRol(id_rol, rol);
 
     if (!rolActualizado) {
       return res.status(404).json({ error: "Rol no encontrado" });
@@ -56,10 +56,10 @@ export const actualizarRol = async (req, res, next) => {
 };
 
 export const eliminarRol = async (req, res, next) => {
-  const { id } = req.params;
+  const { id_rol } = req.params;
 
   try {
-    const rolEliminado = await roleServices.eliminarRol(id);
+    const rolEliminado = await roleServices.eliminarRol(id_rol);
 
     if (!rolEliminado) {
       return res.status(404).json({ error: "Rol no encontrado" });

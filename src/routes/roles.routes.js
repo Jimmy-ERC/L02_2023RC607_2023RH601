@@ -10,15 +10,19 @@ import {
 const router = Router();
 
 router.get("/", rolesController.getRoles);
-router.get("/:id", runValidations(validarIDRol), rolesController.getRolById);
+router.get(
+  "/:id_rol",
+  runValidations(validarIDRol),
+  rolesController.getRolById
+);
 router.post("/", runValidations(insertarRol), rolesController.insertarRol);
 router.put(
-  "/:id",
+  "/:id_rol",
   runValidations(actualizarRol),
   rolesController.actualizarRol
 );
 router.delete(
-  "/:id",
+  "/:id_rol",
   runValidations(validarIDRol),
   rolesController.eliminarRol
 );
