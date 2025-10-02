@@ -1,51 +1,47 @@
 /*
 Tabla roles
-id_rol int8 PRIMARY KEY,
+rol_id int8 PRIMARY KEY,
 rol TEXT NOT NULL
 */
 
 import { pool } from "../db.js";
 
 export const getRoles = async () => {
-  const [rows] = await pool.query("SELECT * FROM roles");
+  const result = await pool.query("SELECT * FROM roles ORDER BY rol_id");
 
-  console.log(rows);
-  console.log(rows.rows);
-  return rows.rows;
+  return result.rows;
 };
 
-export const getRolById = async (id) => {
-  const [rows] = await pool.query("SELECT * FROM roles WHERE id = ?", [id]);
+export const getRolById = async (rol_id) => {
+  const result = await pool.query("SELECT * FROM roles WHERE rol_id = $1", [
+    rol_id,
+  ]);
 
-  return rows[0];
+  return result.rows[0];
 };
 
 export const insertarRol = async (rol) => {
-  const { p_rol } = rol;
-
-  const [result] = await pool.query(
-    "INSERT INTO roles (rol) VALUES (?) RETURNING *",
-    [p_rol]
+  const result = await pool.query(
+    "INSERT INTO roles (rol) VALUES ($1) RETURNING *",
+    [rol]
   );
 
   return result.rows[0];
 };
 
-export const actualizarRol = async (id, rol) => {
-  const { p_rol } = rol;
-
-  const [result] = await pool.query(
-    "UPDATE roles SET rol = ? WHERE id_rol = ? RETURNING *",
-    [p_rol, id]
+export const actualizarRol = async (rol_id, rol) => {
+  const result = await pool.query(
+    "UPDATE roles SET rol = $1 WHERE rol_id = $2 RETURNING *",
+    [rol, rol_id]
   );
 
   return result.rows[0];
 };
 
-export const eliminarRol = async (id) => {
-  const [result] = await pool.query(
-    "DELETE FROM roles WHERE id_rol = ? RETURNING *",
-    [id]
+export const eliminarRol = async (rol_id) => {
+  const result = await pool.query(
+    "DELETE FROM roles WHERE rol_id = $1 RETURNING *",
+    [rol_id]
   );
 
   return result.rows[0];
